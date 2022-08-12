@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluentValidationMit.NetCore6.Web.Migrations
 {
     [DbContext(typeof(AppDbKontext))]
-    [Migration("20220812145602_InitialeErstellen")]
+    [Migration("20220812150819_InitialeErstellen")]
     partial class InitialeErstellen
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
