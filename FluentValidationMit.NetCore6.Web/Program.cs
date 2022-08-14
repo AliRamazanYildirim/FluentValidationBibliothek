@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using FluentValidationMit.NetCore6.Web.FluentValidierer;
 using FluentValidationMit.NetCore6.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,10 @@ builder.Services.AddDbContext<AppDbKontext>(options =>
 
 builder.Services.AddControllersWithViews().AddFluentValidation(conf =>
 {
-    conf.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
+    conf.RegisterValidatorsFromAssemblyContaining<KundeValidierer>();
+
+    //conf.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+    /*(typeof(Program).Assembly)*/
 });
 
 

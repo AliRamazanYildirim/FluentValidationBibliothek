@@ -27,7 +27,12 @@
                 <input asp-for="Alter" class="form-control" />
                 <span asp-validation-for="Alter" class="text-danger"></span>
             </div>
-            <div></div>
+            <div class="form-group">
+                <label asp-for="GeburtsDatum" class="control-label"></label>
+                <input type="date" asp-for="GeburtsDatum" class="form-control" />
+                <span asp-validation-for="GeburtsDatum" class="text-danger"></span>
+            </div>
+            <div> </div>
             <div class="form-group">
                 <input type="submit" value="Erstellen" class="btn btn-primary" />
             </div>
