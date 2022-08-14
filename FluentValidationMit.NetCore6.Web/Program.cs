@@ -1,3 +1,6 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidationMit.NetCore6.Web.FluentValidierer;
 using FluentValidationMit.NetCore6.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +12,21 @@ builder.Services.AddDbContext<AppDbKontext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlVerbindung"));
 });
+//Wenn man  mit db verbinden möchte, kann AddScoped verwenden
+
+//builder.Services.AddScoped<IValidator<Kunde>, KundeValidierer>();
+
+//Wenn die Validator-Klasse in der Anwendung nicht geändert und nur eine erstellt wird, ist es bequemer,
+//den AddSingleton-Dienst hinzuzufügen.
+
+//builder.Services.AddSingleton<IValidator<Kunde>, KundeValidierer>();
+
+builder.Services.AddControllersWithViews().AddFluentValidation(conf =>
+{
+    conf.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
+});
+
+
 
 var app = builder.Build();
 
