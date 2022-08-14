@@ -8,6 +8,8 @@ namespace FluentValidationMit.NetCore6.Web.FluentValidierer
         public string NoEmptyMessage { get; } = "{PropertyName}sfeld darf nicht leer sein";
         public KundeValidierer()
         {
+            //Die serverseitige Validierung wird von KundeValidator durchgeführt.
+
             RuleFor(x => x.Name).NotEmpty().WithMessage(NoEmptyMessage);
             RuleFor(x => x.Email).NotEmpty().WithMessage(NoEmptyMessage)
                 .EmailAddress().WithMessage("Die E-Mail hat nicht das richtige Format");

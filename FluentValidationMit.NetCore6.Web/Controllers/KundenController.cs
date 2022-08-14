@@ -6,17 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FluentValidationMit.NetCore6.Web.Models;
+using FluentValidation;
 
 namespace FluentValidationMit.NetCore6.Web.Controllers
 {
     public class KundenController : Controller
     {
         private readonly AppDbKontext _context;
+        private readonly IValidator<Kunde> _kundeValidator;
 
-        public KundenController(AppDbKontext context)
+        public KundenController(AppDbKontext context, IValidator<Kunde> kundeValidator)
         {
             _context = context;
+            _kundeValidator = kundeValidator;
         }
+
 
         // GET: Kunden
         public async Task<IActionResult> Index()
@@ -55,7 +59,21 @@ namespace FluentValidationMit.NetCore6.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Email,Alter,GeburtsDatum")] Kunde kunde)
         {
-            if (ModelState.IsValid)
+            //Ich kann die Validate-Methode verwenden, um eine direkte Validierung der gewünschten Zielklasse durchzuführen.
+            //Z.b mit einer Win-anwendung
+            var validatorResultat = _kundeValidator.Validate(kunde);
+
+            //Mit ModelState findet eine bidirektionale Validierung statt, d.h.es findet sowohl eine client -
+            //als auch eine serverseitige Validierung statt.
+
+            //if(ModelState.IsValid)
+            //{
+            //    ....
+            //}
+
+            //Wenn wir keine Validierung auf der Clientseite wünschen, können wir mit der Validate-Methode validieren.
+
+            if (validatorResultat.IsValid)
             {
                 _context.Add(kunde);
                 await _context.SaveChangesAsync();
