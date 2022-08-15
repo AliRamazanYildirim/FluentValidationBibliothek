@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidationMit.NetCore6.Web.FluentValidierer;
 using FluentValidationMit.NetCore6.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -30,7 +31,10 @@ builder.Services.AddControllersWithViews().AddFluentValidation(conf =>
     /*(typeof(Program).Assembly)*/
 });
 
-
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;//Mit dieser Paramater kan man ErrorsMessage filtern
+});
 
 var app = builder.Build();
 
