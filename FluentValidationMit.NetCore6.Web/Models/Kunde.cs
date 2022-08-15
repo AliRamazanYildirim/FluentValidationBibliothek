@@ -7,5 +7,6 @@
         public string Email { get; set; }
         public int Alter { get; set; }
         public DateTime? GeburtsDatum { get; set; }
+        public IList<Adresse>Adressen { get; set; }
     }
 }

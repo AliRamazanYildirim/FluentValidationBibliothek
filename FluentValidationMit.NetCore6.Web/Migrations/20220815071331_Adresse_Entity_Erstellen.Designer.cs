@@ -4,6 +4,7 @@ using FluentValidationMit.NetCore6.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluentValidationMit.NetCore6.Web.Migrations
 {
     [DbContext(typeof(AppDbKontext))]
-    partial class AppDbKontextModelSnapshot : ModelSnapshot
+    [Migration("20220815071331_Adresse_Entity_Erstellen")]
+    partial class Adresse_Entity_Erstellen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

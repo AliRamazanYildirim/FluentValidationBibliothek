@@ -9,5 +9,6 @@ namespace FluentValidationMit.NetCore6.Web.Models
 
         }
         public DbSet<Kunde> Kunden { get; set; }
+        public DbSet<Adresse> Adressen { get; set; }
     }
 }
