@@ -19,6 +19,8 @@ namespace FluentValidationMit.NetCore6.Web.FluentValidierer
             {
                 return DateTime.Now.AddYears(-18) >= x;
             }).WithMessage("Sie müssen über 18 Jahre alt sein, um auf diese Website zugreifen zu können");
+            RuleFor(x => x.Geschlecht).IsInEnum().
+                WithMessage("{PropertyName}nsfeld darf für den Mann 1 für die Frau 2 sein");
 
             RuleForEach(x => x.Adressen).SetValidator(new AdresseValidator());
             //Bei KundeController in Create Methode könnte man so schreiben

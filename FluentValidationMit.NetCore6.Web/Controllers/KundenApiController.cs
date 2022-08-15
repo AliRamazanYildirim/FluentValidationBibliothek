@@ -81,12 +81,15 @@ namespace FluentValidationMit.NetCore6.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<Kunde>> PostKunde(Kunde kunde)
         {
-            //var resultat = _kundeValidator.Validate(kunde);
-            //if(!resultat.IsValid)
-            //{
-            //    return BadRequest(resultat.Errors.Select(x=>new { eigenschaft = x.PropertyName,
-            //        fehler=x.ErrorMessage}));
-            //}
+            var resultat = _kundeValidator.Validate(kunde);
+            if (!resultat.IsValid)
+            {
+                return BadRequest(resultat.Errors.Select(x => new
+                {
+                    eigenschaft = x.PropertyName,
+                    fehler = x.ErrorMessage
+                }));
+            }
             _context.Kunden.Add(kunde);
             await _context.SaveChangesAsync();
 

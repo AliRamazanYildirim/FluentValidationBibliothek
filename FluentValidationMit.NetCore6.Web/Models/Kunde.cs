@@ -8,5 +8,6 @@
         public int Alter { get; set; }
         public DateTime? GeburtsDatum { get; set; }
         public IList<Adresse>Adressen { get; set; }
+        public Geschlecht Geschlecht { get; set; }
     }
 }
