@@ -33,7 +33,7 @@ builder.Services.AddControllersWithViews().AddFluentValidation(conf =>
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    options.SuppressModelStateInvalidFilter = true;//Mit dieser Paramater kan man ErrorsMessage filtern
+    options.SuppressModelStateInvalidFilter = true;//Mit dieser Paramater kann man ErrorsMessage selber filtern
 });
 
 var app = builder.Build();
